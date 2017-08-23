@@ -19,10 +19,6 @@ const propTypes = {
   insertCss: PropTypes.func,
 };
 
-const defaultProps = {
-  insertCss: (...styles) => styles.forEach(style => style._insertCss()),
-};
-
 function withStyles(...styles) {
   return function wrapWithStyles(ComposedComponent) {
     class WithStyles extends Component {
@@ -47,7 +43,6 @@ function withStyles(...styles) {
     WithStyles.displayName = `WithStyles(${displayName})`;
     WithStyles.contextTypes = contextTypes;
     WithStyles.propTypes = propTypes;
-    WithStyles.defaultProps = defaultProps;
     WithStyles.ComposedComponent = ComposedComponent;
 
     return hoistStatics(WithStyles, ComposedComponent);
